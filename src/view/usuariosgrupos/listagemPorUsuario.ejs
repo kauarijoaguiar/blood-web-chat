@@ -1,0 +1,29 @@
+<%- include('../includes/head') %>
+
+    <body id="list-body">
+        <%- include('../includes/navbar') %>
+            <div class="w3-container" style="padding-left: 10%; padding-right: 10%;">
+                <h1 class="title">MEUS GRUPOS</h1>
+                <table class="table table-dark" style="background-color: rgba(0, 0, 0, 0.425);">
+                    <thead style="color: #f00000a9">
+                        <tr>
+                            <th>NOME DO GRUPO</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <% grupos.forEach(grupo=> { %>
+                        <tr style="color: #d3d3d3b2;">
+                            <td>
+                                <%= grupo.nome %>
+                            </td>
+                            <td>
+                                <a href="/grupos/<%= grupo.idgrupo %>" class="txt1">
+                                    Ir para a conversa ➝
+                                </a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </table>
+            </div>
+
+    </body>
