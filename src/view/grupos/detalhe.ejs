@@ -33,7 +33,7 @@
                                             <% membrosGrupo.forEach(membro=> { %>
                                                 <div class="user" style="color: #cfcfcf;">
                                                     <div class="name">
-                                                        <img src="https://cdn6.aptoide.com/imgs/6/6/0/660f34eaef9f38443ee4e6c2a28fe966_icon.png" width="15%">
+                                                        <img src="<%=membro.profile%>" width="15%">
                                                         <%=membro.nome%>
                                                             <% if(permissaoUsuarioGrupo=='admin'){ %>
                                                                 <a
