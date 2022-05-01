@@ -60,6 +60,10 @@ class UsuarioGrupoDAO {
         }
     }
 
+    // static async deletar(idGrupo, emailUsuario) {
+    //     const sql = 'DELETE FROM public.usuariogrupoidGrupo = $1 AND emailUsuario = $2'
+    // }
+
 }
 
 module.exports = {
