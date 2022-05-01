@@ -23,13 +23,7 @@ class GrupoDAO {
         }
     }
     static async buscaTodosComMembros() {
-        const sql =
-            `SELECT 
-            GRUPO.NOME, COUNT(*) AS MEMBROS
-        FROM GRUPO
-        INNER JOIN USUARIOGRUPO 
-            ON GRUPO.ID = USUARIOGRUPO.IDGRUPO
-        GROUP BY GRUPO.ID`;
+        const sql = `SELECT  GRUPO.NOME, COUNT(*) AS MEMBROS FROM GRUPO INNER JOIN USUARIOGRUPO ON GRUPO.ID = USUARIOGRUPO.IDGRUPO GROUP BY GRUPO.ID`;
         const result = await dbcon.query(sql);
         return result.rows;
     }
