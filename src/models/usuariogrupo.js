@@ -61,7 +61,9 @@ class UsuarioGrupoDAO {
     }
 
     // static async deletar(idGrupo, emailUsuario) {
-    //     const sql = 'DELETE FROM public.usuariogrupoidGrupo = $1 AND emailUsuario = $2'
+    //     const sql = 'DELETE FROM public.usuariogrupo idGrupo = $1 AND emailUsuario = $2'
+    //     const result = await dbcon.query(sql, [idGrupo, emailUsuario]);
+    //     return result;
     // }
 
 }

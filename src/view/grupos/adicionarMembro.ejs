@@ -2,36 +2,38 @@
 
     <body id="list-body">
         <%- include('../includes/navbar') %>
-        <% if(typeof msg !="undefined" ){ %>
-            <%- include('../includes/modal') %>
-        <%}%>
-                <div class="container" style="text-align: center;">
-                    <div>
-                        <form action="adicionarMembro" method="POST">
-                            <h3 style="color: #f00000;">ADICIONAR MEMBRO A <%= grupo.nome %></h3>
+            <% if(typeof msg !="undefined" ){ %>
+                <%- include('../includes/modal') %>
+                    <%}%>
+                        <div class="container" style="text-align: center;">
                             <div>
-                                <input type="email" name="emailUsuario" placeholder="E-mail">
-                            </div>
-                            <div>
-                                <select name="permissao" required>
+                                <form action="adicionarMembro" method="POST">
+                                    <h3 style="color: #f00000;">ADICIONAR MEMBRO A
+                                        <%= grupo.nome %>
+                                    </h3>
+                                    <div>
+                                        <input type="email" name="emailUsuario" placeholder="E-mail">
+                                    </div>
+                                    <div>
+                                        <select name="permissao" required>
                                     <option value="" selected disabled hidden>Permissão</option>
                                     <option value="escritor">Escritor</option>
                                     <option value="leitor">Leitor</option>
                                 </select>
-                            </div>
-                            <div>
-                                <button type="submit" class="btn btn-danger" style="background-color: #f00000; color: black;">
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="btn btn-danger" style="background-color: #f00000; color: black;">
                                     ADICIONAR
                                 </button>
-                            </div>
-                            <div>
-                                <a href="/" style="color: #f00000;">
+                                    </div>
+                                    <div>
+                                        <a href="/" style="color: #f00000;">
                                     Cancelar
                                 </a>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
-                    </div>
-                </div>
+                        </div>
 
 
 

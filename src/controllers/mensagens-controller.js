@@ -1,7 +1,4 @@
-const { Grupo, GrupoDAO } = require('../models/grupo');
 const { Mensagem, MensagemDAO } = require('../models/mensagem');
-const { UsuarioDAO } = require('../models/usuario');
-const { UsuarioGrupo, UsuarioGrupoDAO } = require('../models/usuariogrupo');
 class MensagensController {
     async enviaMensagem(req, res) {
         const mensagemBody = req.body;

@@ -59,6 +59,6 @@ app.use('*', (req, res) => {
 const dbcon = require('./config/connection-db');
 console.log(dbcon);
 
-const PORT = process.env.PORT;
-console.log({ PORT });
-app.listen(PORT, () => console.log(`Server iniciado na porta ${PORT}`));
+// const PORT = process.env.PORT;
+// console.log({ PORT });
+app.listen(3000, () => console.log(`Server iniciado na porta 3000`));

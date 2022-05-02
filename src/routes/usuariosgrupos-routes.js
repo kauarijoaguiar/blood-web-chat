@@ -8,4 +8,6 @@ const usuariogrupoController = new UsuariosgruposController();
 
 routes.get('/listagemPorUsuario', usuariogrupoController.mostraListagemPorUsuario);
 
+//routes.get('/:idGrupo/adicionarMembro', usuariogrupoController.deletar);
+
 module.exports = routes;
