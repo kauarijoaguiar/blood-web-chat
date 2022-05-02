@@ -20,8 +20,7 @@
                         <div class="content container-fluid bootstrap snippets bootdey">
                             <div class="row row-broken">
                                 <div class="col-sm-3 col-xs-12">
-                                    <div class="col-inside-lg chat" style="overflow: scroll; outline: none;"
-                                        tabindex="5000">
+                                    <div class="col-inside-lg chat" style="overflow: scroll; outline: none;" tabindex="5000">
                                         <div class="chat-users" style="background-color: black;">
                                             <h4 style="color: #d4d4d4;">Membros
                                                 <% if(permissaoUsuarioGrupo=='admin' ){ %>
@@ -34,14 +33,14 @@
                                                 <div class="user" style="color: #cfcfcf;">
                                                     <div class="name">
                                                         <img src="<%=membro.profile%>" width="15%">
-                                                        <%=membro.nome%>
-                                                            <% if(permissaoUsuarioGrupo=='admin'){ %>
-                                                                <a
-                                                                    href="/grupos/<%=grupo.id%>/eliminarMembro/<%=membro.email%>">
-                                                                    <i style="color: red;" class="fa fa-times">
+                                                        <%=membro.profile%>
+                                                            <%=membro.nome%>
+                                                                <% if(permissaoUsuarioGrupo=='admin'){ %>
+                                                                    <a href="/grupos/<%=grupo.id%>/eliminarMembro/<%=membro.email%>">
+                                                                        <i style="color: red;" class="fa fa-times">
                                                                         Remover</i>
-                                                                </a>
-                                                                <% } %>
+                                                                    </a>
+                                                                    <% } %>
                                                     </div>
                                                     <div class="permissao">
                                                         <%=membro.permissao%>
@@ -59,7 +58,7 @@
                                             <% mensagens.forEach(mensagem=> { %>
                                                 <div class="answer <%=mensagem.posicao%>">
                                                     <div class="avatar">
-                                                        
+
                                                         <div class="status online"></div>
                                                     </div>
                                                     <div class="name" style="color: #da0000;">
@@ -80,13 +79,12 @@
                                                 <% }) %>
                                                     <% if(permissaoUsuarioGrupo !=='leitor' ){ %>
                                                         <div class="container">
-                                                        <form class="validate-form"
-                                                            action="/grupos/<%=grupo.id%>/enviaMensagem" method="POST">
-                                                            <div class="form-group"></div>
-                                                                <input class="form-control" name="texto" required placeholder="Escreva uma mensagem.." style="background-color: #383838; color: #cfcfcf;">                                                                
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <button style="opacity: 0%;" type="submit">
+                                                            <form class="validate-form" action="/grupos/<%=grupo.id%>/enviaMensagem" method="POST">
+                                                                <div class="form-group"></div>
+                                                                <input class="form-control" name="texto" required placeholder="Escreva uma mensagem.." style="background-color: #383838; color: #cfcfcf;">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button style="opacity: 0%;" type="submit">
                                                             </div>
                                                         </form>
                                                         </div>
