@@ -10,8 +10,9 @@ class UsuariosController {
         const usuarioBody = req.body;
         const usuarioEcontrado = await UsuarioDAO.buscaPeloEmail(usuarioBody.email);
         if (usuarioEcontrado) {
-            const msg = {}; msg.titulo = "E-mail em uso";
-            msg.mensagem = "Este e-mail já está em uso em um cadastro no Mensageria Chat. Tente fazer login.";
+            const msg = {};
+            msg.titulo = "E-mail sendo usado";
+            msg.mensagem = "Este e-mail já está sendo usado";
             return res.render('login', { msg: msg });
         } else {
             const senha = bcrypt.hashSync(usuarioBody.senha, 10);
@@ -30,7 +31,7 @@ class UsuariosController {
 
         const msg = {};
         msg.titulo = "Tente novamente";
-        msg.mensagem = "Email ou senha inválidos.";
+        msg.mensagem = "Algo errado no login.";
         if (!usuarioEcontrado) {
             return res.render('login', { msg: msg });
         } else {

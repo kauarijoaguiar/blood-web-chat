@@ -32,7 +32,7 @@ class GruposController {
             if (usuario) {
                 const usuarioGrupo = await UsuarioGrupoDAO.buscaUsuarioGrupo(idGrupo, emailUsuario);
                 if (usuarioGrupo) {
-                    msg.titulo = "Usuário já é membro do grupo";
+                    msg.titulo = "Usuário já inserido no grupo";
                     msg.mensagem = "Ops, este usuário já é membro do grupo!";
                     return res.render('grupos/adicionarMembro', { msg, grupo });
                 } else {
@@ -41,8 +41,8 @@ class GruposController {
                     res.redirect("/");
                 }
             } else {
-                msg.titulo = "Usuário não encontrado";
-                msg.mensagem = "Ops, este usuário não existe no nosso sistema. 🤔";
+                msg.titulo = "Não foi encontrado esse usuario";
+                msg.mensagem = "Este usuário não existe";
                 return res.render('grupos/adicionarMembro', { msg, grupo });
             }
 

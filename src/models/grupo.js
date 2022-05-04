@@ -33,7 +33,7 @@ class GrupoDAO {
         const result = await dbcon.query("SELECT CASE WHEN (SELECT COUNT(*) FROM GRUPO) > 0 THEN nextval('grupo_id_seq'::regclass) ELSE 1 END AS nextval");
         const proximoId = result.rows[0].nextval;
 
-        const sql = 'INSERT INTO GRUPO (ID, NOME, adm, lancamento) VALUES ($1, $2, $3, $4);';
+        const sql = 'INSERT INTO GRUPO (ID, NOME, ADM, LANCAMENTO) VALUES ($1, $2, $3, $4);';
         const values = [proximoId, grupo.nome.toUpperCase(), grupo.adm, grupo.lancamento];
 
         try {
