@@ -51,6 +51,9 @@ app.use('/grupos', mensagensRoutes);
 const usuariosgruposRoutes = require('./routes/usuariosgrupos-routes');
 app.use('/usuariosgrupos', usuariosgruposRoutes);
 
+const adicionaMembro = require('./routes/usuariosgrupos-routes');
+app.use('/grupos', adicionaMembro);
+
 app.use('*', (req, res) => {
     return res.status(404).send(`
         <h1>404 - NOT FOUND</h1>

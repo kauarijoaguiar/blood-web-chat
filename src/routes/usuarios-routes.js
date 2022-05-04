@@ -6,7 +6,6 @@ const routes = Router();
 
 const usuarioController = new UsuariosController();
 
-
 routes.get('/', usuarioController.login);
 
 routes.post('/login', usuarioController.login);
