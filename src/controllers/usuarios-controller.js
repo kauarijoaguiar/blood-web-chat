@@ -8,7 +8,7 @@ class UsuariosController {
     }
     async cadastro(req, res) {
         const usuarioBody = req.body;
-        const usuarioEcontrado = await UsuarioDAO.buscaPeloEmail(usuarioBody.email);
+        const usuarioEcontrado = await UsuarioDAO.emailsearch(usuarioBody.email);
         if (usuarioEcontrado) {
             const msg = {};
             msg.titulo = "E-mail sendo usado";
@@ -27,7 +27,7 @@ class UsuariosController {
     }
     async login(req, res) {
         const { email, senha } = req.body;
-        const usuarioEcontrado = await UsuarioDAO.buscaPeloEmail(email);
+        const usuarioEcontrado = await UsuarioDAO.emailsearch(email);
 
         const msg = {};
         msg.titulo = "Tente novamente";

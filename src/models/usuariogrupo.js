@@ -11,7 +11,7 @@ class UsuarioGrupo {
 
 class UsuarioGrupoDAO {
 
-    static async buscaPeloId(id) {
+    static async idsearch(id) {
         const sql = 'SELECT * FROM USUARIOGRUPO WHERE ID = $1';
         const result = await dbcon.query(sql, [id]);
         if (result.rows[0]) {
@@ -22,23 +22,23 @@ class UsuarioGrupoDAO {
         }
     }
 
-    static async buscaPeloUsuario(emailUsuario) {
+    static async usersearch(emailUsuario) {
         const sql = 'SELECT GRUPO.NOME, IDGRUPO FROM USUARIOGRUPO LEFT JOIN GRUPO ON IDGRUPO = GRUPO.ID WHERE EMAILUSUARIO = $1';
         const result = await dbcon.query(sql, [emailUsuario]);
         return result.rows;
     }
 
-    static async buscarPermissaoUsuarioGrupo(idGrupo, emailUsuario) {
+    static async userpg(idGrupo, emailUsuario) {
         const sql = 'SELECT PERMISSAO FROM USUARIOGRUPO WHERE IDGRUPO = $1 AND EMAILUSUARIO = $2';
         const result = await dbcon.query(sql, [idGrupo, emailUsuario]);
         return result.rows[0].permissao;
     }
-    static async buscaMembrosDoGrupo(idGrupo) {
+    static async seartchmg(idGrupo) {
         const sql = "SELECT GRUPO.NOME AS NOMEGRUPO, USUARIO.NOME, usuario.email, CASE PERMISSAO WHEN 'admin' THEN 'Administrador' WHEN 'escritor' THEN 'Escritor' ELSE 'Leitor' END AS PERMISSAO FROM USUARIOGRUPO INNER JOIN USUARIO ON EMAILUSUARIO = USUARIO.EMAIL LEFT JOIN GRUPO ON IDGRUPO = GRUPO.ID  WHERE idGrupo = $1";
         const result = await dbcon.query(sql, [idGrupo]);
         return result.rows;
     }
-    static async buscaUsuarioGrupo(idGrupo, emailUsuario) {
+    static async seartchug(idGrupo, emailUsuario) {
         const sql = 'SELECT * FROM USUARIOGRUPO WHERE idGrupo = $1 AND emailUsuario = $2';
         const result = await dbcon.query(sql, [idGrupo, emailUsuario]);
         if (result.rows[0]) {

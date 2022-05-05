@@ -11,8 +11,7 @@ class Grupo {
 }
 
 class GrupoDAO {
-
-    static async buscaPeloId(id) {
+    static async idsearch(id) {
         const sql = 'SELECT * FROM GRUPO WHERE ID = $1';
         const result = await dbcon.query(sql, [id]);
         if (result.rows[0]) {
@@ -22,7 +21,7 @@ class GrupoDAO {
             return null;
         }
     }
-    static async buscaTodosComMembros() {
+    static async membrogrupo() {
         const sql = `SELECT  GRUPO.NOME, COUNT(*) AS MEMBROS FROM GRUPO INNER JOIN USUARIOGRUPO ON GRUPO.ID = USUARIOGRUPO.IDGRUPO GROUP BY GRUPO.ID`;
         const result = await dbcon.query(sql);
         return result.rows;

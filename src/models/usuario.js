@@ -11,7 +11,7 @@ class Usuario {
 
 class UsuarioDAO {
 
-    static async buscaPeloEmail(email) {
+    static async emailsearch(email) {
         const sql = 'SELECT * FROM USUARIO WHERE EMAIL = $1';
         const result = await dbcon.query(sql, [email]);
         if (result.rows[0]) {

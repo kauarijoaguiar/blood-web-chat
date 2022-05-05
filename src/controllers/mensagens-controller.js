@@ -7,7 +7,6 @@ class MensagensController {
         await MensagemDAO.cadastrar(mensagem);
         res.redirect('/grupos/' + idGrupo);
     }
-
 }
 
 module.exports = { MensagensController };

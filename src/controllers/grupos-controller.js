@@ -1,7 +1,6 @@
 const { Grupo, GrupoDAO } = require('../models/grupo');
 const { MensagemDAO } = require('../models/mensagem');
-const { UsuarioDAO } = require('../models/usuario');
-const { UsuarioGrupo, UsuarioGrupoDAO } = require('../models/usuariogrupo');
+const { UsuarioGrupoDAO } = require('../models/usuariogrupo');
 
 class GruposController {
     async mostraCadastro(req, res) {
@@ -13,19 +12,16 @@ class GruposController {
         const id = await GrupoDAO.cadastrar(grupo);
         res.redirect('/grupos/' + id + '/adicionarMembro');
     }
-
-
     async mostraListagemGeral(req, res) {
-        const grupos = await GrupoDAO.buscaTodosComMembros();
+        const grupos = await GrupoDAO.membrogrupo();
         return res.render('grupos/listagemGeral', { grupos })
     }
-
     async mostraDetalhe(req, res) {
         const { idGrupo } = req.params;
-        const grupo = await GrupoDAO.buscaPeloId(idGrupo);
-        const membrosGrupo = await UsuarioGrupoDAO.buscaMembrosDoGrupo(idGrupo);
-        const mensagens = await MensagemDAO.buscaMensagensGrupo(idGrupo, req.session.usuario.email);
-        const permissaoUsuarioGrupo = await UsuarioGrupoDAO.buscarPermissaoUsuarioGrupo(idGrupo, req.session.usuario.email);
+        const grupo = await GrupoDAO.idsearch(idGrupo);
+        const membrosGrupo = await UsuarioGrupoDAO.seartchmg(idGrupo);
+        const mensagens = await MensagemDAO.mensagens(idGrupo, req.session.usuario.email);
+        const permissaoUsuarioGrupo = await UsuarioGrupoDAO.userpg(idGrupo, req.session.usuario.email);
         return res.render('grupos/detalhe', { grupo, membrosGrupo, mensagens, permissaoUsuarioGrupo });
     }
 

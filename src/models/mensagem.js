@@ -12,7 +12,7 @@ class Mensagem {
 
 class MensagemDAO {
 
-    static async buscaMensagensGrupo(idGrupo, emailUsuarioSecao) {
+    static async mensagens(idGrupo, emailUsuarioSecao) {
         const sql = `SELECT USUARIO.NOME AS NOMEUSUARIO, DATAENVIO, TEXTO, CASE ESCRITOR WHEN $1 THEN 'RIGHT' ELSE 'LEFT' END AS POSICAO FROM MENSAGE LEFT JOIN USUARIO ON ESCRITOR = USUARIO.EMAIL WHERE IDGRUPO = $2`;
         const result = await dbcon.query(sql, [emailUsuarioSecao, idGrupo]);
         return result.rows;
