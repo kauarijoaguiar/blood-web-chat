@@ -1,97 +1,89 @@
 <%- include('../includes/head') %>
 
-    <body id="list-body">
-        <%- include('../includes/navbar', {"criarSection": false}) %>
-            <h3 style="text-align: center; color: #cfcfcf;">
-                <%=grupo.nome%>
-            </h3>
-            <% if(permissaoUsuarioGrupo !='admin' ){ %>
-
-                <h6 style="text-align: right; margin-right: 12%;">
-                    <a href="/grupos/<%=grupo.id%>/">
-                        <i style="color: red;" class="fa fa-times"> Sair do Grupo</i>
-                    </a>
-                </h6>
-                <% } %>
-
-                    <br>
+<body id="list-body">
+    <%- include('../includes/navbar', {"criarSection": false}) %>
+    <h3 style="text-align: center; color: #cfcfcf;"><%=grupo.nome%></h3>                            
+    <% if(permissaoUsuarioGrupo !='admin' ){ %>
+    <h6 style="text-align: right; margin-right: 12%;">
+        <a href="/grupos/<%=grupo.id%>/">
+            <i style="color: red;" class="fa fa-times"> Sair do Grupo</i>
+        </a>
+    </h6>
+    <% } %>
+    <br>
+    <div class="container">
+    <div class="content container-fluid bootstrap snippets bootdey">
+    <div class="row row-broken">
+    <div class="col-sm-3 col-xs-12">
+    <div class="col-inside-lg chat" style="overflow: scroll; outline: none;" tabindex="5000">
+    <div class="chat-users" style="background-color: black;">
+        <h4 style="color: #d4d4d4;">Membros
+            <% if(permissaoUsuarioGrupo=='admin' ){ %>
+            <a href="/grupos/<%=grupo.id%>/adicionarMembro">
+                <i class="fa fa-plus" style="color: #da0000;"> Adicionar</i>
+            </a>
+            <% } %>
+        </h4>
+        <% membrosGrupo.forEach(membro=> { %>
+    <div class="user" style="color: #cfcfcf;">
+    <div class="name">
+        <img src="<%=membro.profile%>" width="15%">
+        <%=membro.profile%>
+        <%=membro.nome%>
+        <% if(permissaoUsuarioGrupo=='admin'){ %>
+            <a href="/grupos/<%=grupo.id%>/eliminarMembro/<%=membro.email%>">
+                <i style="color: red;" class="fa fa-times">Remover</i>
+            </a>
+        <% } %>
+    </div>
+    <div class="permissao">
+        <%=membro.permissao%>
+    </div>
+    </div>
+        <% }) %>
+    </div>
+    </div>
+    </div>
+    <div style="overflow: scroll; outline: none;" id="user-grup">
+    <div class="chat-body">
+        <h3 style="text-align: center; color: #da0000;">Mensagens</h3>
+            <% mensagens.forEach(mensagem=> { %>
+                <div class="answer <%=mensagem.posicao%>">
+                <div class="avatar">
+                <div class="status online">
+                </div>
+                </div>
+                <div class="name" style="color: #da0000;">
+                <img src="https://cdn6.aptoide.com/imgs/6/6/0/660f34eaef9f38443ee4e6c2a28fe966_icon.png" width="4%">
+                <%=mensagem.nomeusuario%>
+                </div>
+                <div class="text" style="color: rgb(182, 182, 182);">
+                    <%=mensagem.texto%>
+                </div>
+                <div class="time">
+                <% let options={ weekday: 'long' , year: 'numeric' ,
+                month: 'numeric' , day: 'numeric' , hour: 'numeric' ,
+                minute: 'numeric' }; %>
+                <%= new Date(mensagem.dataenvio).toLocaleDateString('pt-BR',
+                options) %>
+                </div>
+                </div>
+                    <% }) %>
+                    <% if(permissaoUsuarioGrupo !=='leitor' ){ %>
                     <div class="container">
-                        <div class="content container-fluid bootstrap snippets bootdey">
-                            <div class="row row-broken">
-                                <div class="col-sm-3 col-xs-12">
-                                    <div class="col-inside-lg chat" style="overflow: scroll; outline: none;" tabindex="5000">
-                                        <div class="chat-users" style="background-color: black;">
-                                            <h4 style="color: #d4d4d4;">Membros
-                                                <% if(permissaoUsuarioGrupo=='admin' ){ %>
-                                                    <a href="/grupos/<%=grupo.id%>/adicionarMembro">
-                                                        <i class="fa fa-plus" style="color: #da0000;"> Adicionar</i>
-                                                    </a>
-                                                    <% } %>
-                                            </h4>
-                                            <% membrosGrupo.forEach(membro=> { %>
-                                                <div class="user" style="color: #cfcfcf;">
-                                                    <div class="name">
-                                                        <img src="<%=membro.profile%>" width="15%">
-                                                        <%=membro.profile%>
-                                                            <%=membro.nome%>
-                                                                <% if(permissaoUsuarioGrupo=='admin'){ %>
-                                                                    <a href="/grupos/<%=grupo.id%>/eliminarMembro/<%=membro.email%>">
-                                                                        <i style="color: red;" class="fa fa-times">
-                                                                        Remover</i>
-                                                                    </a>
-                                                                    <% } %>
-                                                    </div>
-                                                    <div class="permissao">
-                                                        <%=membro.permissao%>
-                                                    </div>
-                                                </div>
-                                                <% }) %>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="overflow: scroll; outline: none;" id="user-grup">
-                                    <div class="col-inside-lg decor-default" style="border-radius: 0.5rem;; min-height: 100%;">
-                                        <div class="chat-body">
-                                            <h3 style="text-align: center; color: #da0000;">Mensagens</h3>
-                                            <% mensagens.forEach(mensagem=> { %>
-                                                <div class="answer <%=mensagem.posicao%>">
-                                                    <div class="avatar">
-
-                                                        <div class="status online"></div>
-                                                    </div>
-                                                    <div class="name" style="color: #da0000;">
-                                                        <img src="https://cdn6.aptoide.com/imgs/6/6/0/660f34eaef9f38443ee4e6c2a28fe966_icon.png" width="4%">
-                                                        <%=mensagem.nomeusuario%>
-                                                    </div>
-                                                    <div class="text" style="color: rgb(182, 182, 182);">
-                                                        <%=mensagem.texto%>
-                                                    </div>
-                                                    <div class="time">
-                                                        <% let options={ weekday: 'long' , year: 'numeric' ,
-                                                            month: 'numeric' , day: 'numeric' , hour: 'numeric' ,
-                                                            minute: 'numeric' }; %>
-                                                            <%= new Date(mensagem.dataenvio).toLocaleDateString('pt-BR',
-                                                                options) %>
-                                                    </div>
-                                                </div>
-                                                <% }) %>
-                                                    <% if(permissaoUsuarioGrupo !=='leitor' ){ %>
-                                                        <div class="container">
-                                                            <form class="validate-form" action="/grupos/<%=grupo.id%>/enviaMensagem" method="POST">
-                                                                <div class="form-group"></div>
-                                                                <input class="form-control" name="texto" required placeholder="Escreva uma mensagem.." style="background-color: #383838; color: #cfcfcf;">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <button style="opacity: 0%;" type="submit">
-                                                            </div>
-                                                        </form>
-                                                        </div>
-                                                        <% } %>
-                                        </div>
-                                    </div>
-                                </div>
+                        <form class="validate-form" action="/grupos/<%=grupo.id%>/enviaMensagem" method="POST">
+                            <div class="form-group"></div>
+                                <input class="form-control" name="texto" required placeholder="Escreva uma mensagem.." style="background-color: #383838; color: #cfcfcf;">
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <button style="opacity: 0%;" type="submit">
+                            </div>
+                        </form>
                     </div>
+                    <% } %>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
     </body>

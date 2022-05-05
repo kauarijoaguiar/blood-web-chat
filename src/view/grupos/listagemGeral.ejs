@@ -1,29 +1,21 @@
 <%- include('../includes/head') %>
+<%- include('../includes/navbar') %>
 
-    <body id="list-body">
-        <%- include('../includes/navbar') %>
-            <h1 class="title">TODOS OS GRUPOS</h1>
-            <h3 style="text-align: center; color: #cfcfcf;">
-                BLOOD-WEB-CHAT Kauã e Christian
-            </h3>
-            <div class="w3-container" style="padding-left: 10%; padding-right: 10%;">
-                <table class="table table-dark" style="background-color: rgba(0, 0, 0, 0.425);">
-                    <thead style="color: #f00000a9">
-                        <tr>
-                            <th>NOME DO GRUPO</th>
-                            <th>QUANTIDADE DE MEMBROS</th>
-                        </tr>
-                    </thead>
-                    <% grupos.forEach(grupo=> { %>
-                        <tr style="color: #d3d3d3b2;">
-                            <td>
-                                <%= grupo.nome %>
-                            </td>
-                            <td>
-                                <%= grupo.membros %>
-                            </td>
-                        </tr>
-                        <% }) %>
-                </table>
-            </div>
-    </body>
+<body id="list-body">
+    <h1 class="title">TODOS OS GRUPOS</h1>
+    <h3 style="text-align: center; color: #cfcfcf;">BLOOD-WEB-CHAT Kauã e Christian</h3>
+        <div class="w3-container" style="padding-left: 10%; padding-right: 10%;">
+            <table class="table table-dark" style="background-color: rgba(0, 0, 0, 0.425);">                    
+                <tr>
+                    <th style="color: #f00000a9">NOME DO GRUPO</th>
+                    <th style="color: #f00000a9">QUANTIDADE DE MEMBROS</th>
+                </tr>                    
+                <% grupos.forEach(grupo=> { %>
+                <tr style="color: #d3d3d3b2;">
+                    <td><%= grupo.nome %></td>
+                    <td><%= grupo.membros %></td>
+                </tr>
+                <% }) %>
+            </table>
+        </div>
+</body>

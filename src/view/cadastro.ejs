@@ -1,36 +1,30 @@
 <%- include('includes/head') %>
-    <%- include('includes/navbar') %>
-        <link rel="stylesheet" href="css/main.css">
+<%- include('includes/navbar') %>
+<link rel="stylesheet" href="css/main.css">
 
-        <body id="list-body">
-            <% if(typeof msg !="undefined" ){ %>
-                <%- include('includes/modal') %>
-                    <%}%>
-                        <div>
-                            <form id="log-all" action="cadastro" method="POST">
-                                <img src="https://cdn6.aptoide.com/imgs/6/6/0/660f34eaef9f38443ee4e6c2a28fe966_icon.png" width="20%" style="opacity: 80%;">
-                                <div>
-                                    <input type="text" name="nome" placeholder="Nome">
-                                </div>
+<body id="list-body">            
+    <form id="log-all" action="cadastro" method="POST">
+        <img src="https://cdn6.aptoide.com/imgs/6/6/0/660f34eaef9f38443ee4e6c2a28fe966_icon.png" width="20%" style="opacity: 80%;">
+        <div>
+            <input type="text" name="nome" placeholder="Nome">
+        </div>
 
-                                <div>
-                                    <input type="email" name="email" placeholder="E-mail">
-                                </div>
+        <div>
+            <input type="email" name="email" placeholder="E-mail">
+        </div>
 
-                                <div>
-                                    <input type="password" name="senha" placeholder="Senha">
-                                </div>
+        <div>
+            <input type="password" name="senha" placeholder="Senha">
+        </div>
 
-                                <div>
-                                    <input type="text" name="profile" placeholder="Foto de perfil LINK">
-                                </div>
+        <div>
+            <input type="text" name="profile" placeholder="Foto de perfil LINK">
+        </div>
 
-                                <div>
-                                    <a href="./login" id="new-memb">Logar</a>
-                                </div>
+        <div>
+            <a href="./login" id="new-memb">Logar</a>
+        </div>
 
-                                <button id="submit" type="submit">Cadastrar</button>
-
-                            </form>
-                        </div>
-        </body>
+        <button id="submit" type="submit">Cadastrar</button>
+    </form>
+</body>
