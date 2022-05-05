@@ -1,6 +1,7 @@
 const { GrupoDAO } = require('../models/grupo');
 const { UsuarioDAO } = require('../models/usuario');
 const { UsuarioGrupo, UsuarioGrupoDAO } = require('../models/usuariogrupo');
+const { MensagemDAO } = require('../models/mensagem');
 
 class UsuariosgruposController {
     async mostraListagemPorUsuario(req, res) {
@@ -44,6 +45,12 @@ class UsuariosgruposController {
         } else {
             res.redirect("/grupos/cadastro");
         }
+    }
+    async deletar(req, res) {
+        const { idGrupo, emailUsuario } = req.params;
+        await UsuarioGrupoDAO.deletar(idGrupo, emailUsuario);
+
+        return res.redirect('/grupos');
     }
 }
 

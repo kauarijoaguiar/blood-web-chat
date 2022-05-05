@@ -22,7 +22,8 @@ class GruposController {
         const membrosGrupo = await UsuarioGrupoDAO.seartchmg(idGrupo);
         const mensagens = await MensagemDAO.mensagens(idGrupo, req.session.usuario.email);
         const permissaoUsuarioGrupo = await UsuarioGrupoDAO.userpg(idGrupo, req.session.usuario.email);
-        return res.render('grupos/detalhe', { grupo, membrosGrupo, mensagens, permissaoUsuarioGrupo });
+        const usuario = req.session.usuario;
+        return res.render('grupos/detalhe', { grupo, membrosGrupo, mensagens, permissaoUsuarioGrupo, usuario });
     }
 
 }

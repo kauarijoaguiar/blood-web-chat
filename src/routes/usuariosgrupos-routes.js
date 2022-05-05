@@ -11,6 +11,7 @@ routes.get('/listagemPorUsuario', usuariogrupoController.mostraListagemPorUsuari
 routes.get('/:idGrupo/adicionarMembro', usuariogrupoController.mostraAdicionarMembro);
 
 routes.post('/:idGrupo/adicionarMembro', usuariogrupoController.adicionaMembro);
-//routes.get('/:idGrupo', usuariogrupoController.deletar);
+
+routes.get('/:idGrupo/eliminarmembro/:emailUsuario', usuariogrupoController.deletar);
 
 module.exports = routes;
