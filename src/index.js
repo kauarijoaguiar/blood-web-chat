@@ -48,8 +48,8 @@ app.use('/grupos', mensagensRoutes);
 const usuariosgruposRoutes = require('./routes/usuariosgrupos-routes');
 app.use('/usuariosgrupos', usuariosgruposRoutes);
 
-// const adicionaMembro = require('./routes/usuariosgrupos-routes');
-// app.use('/grupos', adicionaMembro);
+const adicionaMembro = require('./routes/usuariosgrupos-routes');
+app.use('/grupos', adicionaMembro);
 
 app.get('/', (req, res) => {
     res.redirect('/grupos');
