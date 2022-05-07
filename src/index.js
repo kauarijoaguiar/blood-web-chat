@@ -35,9 +35,6 @@ app.get('*', (req, res, next) => {
     }
 })
 
-app.get('/', (req, res) => {
-    res.redirect('/grupos');
-});
 
 const usuariosRoutes = require('./routes/usuarios-routes');
 app.use('/usuarios', usuariosRoutes);
@@ -51,8 +48,12 @@ app.use('/grupos', mensagensRoutes);
 const usuariosgruposRoutes = require('./routes/usuariosgrupos-routes');
 app.use('/usuariosgrupos', usuariosgruposRoutes);
 
-const adicionaMembro = require('./routes/usuariosgrupos-routes');
-app.use('/grupos', adicionaMembro);
+// const adicionaMembro = require('./routes/usuariosgrupos-routes');
+// app.use('/grupos', adicionaMembro);
+
+app.get('/', (req, res) => {
+    res.redirect('/grupos');
+});
 
 app.use('*', (req, res) => {
     return res.status(404).send(`

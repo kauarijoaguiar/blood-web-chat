@@ -6,7 +6,8 @@ const routes = Router();
 
 const grupoController = new GruposController();
 
-routes.get('/', grupoController.mostraListagemGeral);
+// routes.get('/', grupoController.mostraListagemGeral);
+// routes.get('/?page', grupoController.pag);
 
 routes.get('/', grupoController.pag);
 

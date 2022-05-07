@@ -33,11 +33,12 @@ class GruposController {
             page = 1;
         }
         const limit = 5;
-        const offset = limit = (pag - 1);
+        const offset = limit * (page - 1);
         const grupos = await GrupoDAO.listar(offset, limit);
         const total = await GrupoDAO.contar();
-        res.render('initial', { grupos: grupos, total, page });
-        return
+        console.log(total);
+        res.render('grupos/listagemGeral', { grupos: grupos, total, page });
+
     }
 
 }

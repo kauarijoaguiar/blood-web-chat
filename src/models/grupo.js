@@ -17,6 +17,11 @@ class GrupoDAO {
         return result.rows;
     }
 
+    static async contar() {
+        const sql = 'SELECT COUNT(*) FROM GRUPO';
+        const result = await dbcon.query(sql);
+        return result.rows;
+    }
 
     static async idsearch(id) {
         const sql = 'SELECT * FROM GRUPO WHERE ID = $1';
