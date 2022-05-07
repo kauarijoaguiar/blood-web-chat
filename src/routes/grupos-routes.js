@@ -8,6 +8,8 @@ const grupoController = new GruposController();
 
 routes.get('/', grupoController.mostraListagemGeral);
 
+routes.get('/', grupoController.pag);
+
 routes.post('/cadastro', grupoController.cadastro);
 
 routes.get('/cadastro', grupoController.mostraCadastro);

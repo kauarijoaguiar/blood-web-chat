@@ -26,6 +26,20 @@ class GruposController {
         return res.render('grupos/detalhe', { grupo, membrosGrupo, mensagens, permissaoUsuarioGrupo, usuario });
     }
 
+    async pag(req, res) {
+        let { page } = req.query;
+        console.log({ page });
+        if (!page) {
+            page = 1;
+        }
+        const limit = 5;
+        const offset = limit = (pag - 1);
+        const grupos = await GrupoDAO.listar(offset, limit);
+        const total = await GrupoDAO.contar();
+        res.render('initial', { grupos: grupos, total, page });
+        return
+    }
+
 }
 
 module.exports = { GruposController };

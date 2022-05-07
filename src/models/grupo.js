@@ -11,6 +11,13 @@ class Grupo {
 }
 
 class GrupoDAO {
+    static async listar(offset, limit) {
+        const sql = 'SELECT * FROM GRUPO LIMIT $1 OFFSET $2';
+        const result = await dbcon.query(sql, [limit, offset]);
+        return result.rows;
+    }
+
+
     static async idsearch(id) {
         const sql = 'SELECT * FROM GRUPO WHERE ID = $1';
         const result = await dbcon.query(sql, [id]);
