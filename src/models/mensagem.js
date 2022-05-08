@@ -12,9 +12,21 @@ class Mensagem {
 
 class MensagemDAO {
 
-    static async mensagens(idGrupo, emailUsuarioSecao) {
-        const sql = `SELECT USUARIO.NOME AS NOMEUSUARIO, DATAENVIO, TEXTO, CASE ESCRITOR WHEN $1 THEN 'RIGHT' ELSE 'LEFT' END AS POSICAO FROM MENSAGE LEFT JOIN USUARIO ON ESCRITOR = USUARIO.EMAIL WHERE IDGRUPO = $2`;
-        const result = await dbcon.query(sql, [emailUsuarioSecao, idGrupo]);
+    static async listarMsg(offset, limit) {
+        const sql = 'SELECT * FROM MENSAGE LIMIT $1 OFFSET $2';
+        const result = await dbcon.query(sql, [limit, offset]);
+        return result.rows;
+    }
+
+    static async contarMsg() {
+        const sql = 'SELECT COUNT(*) FROM MENSAGE';
+        const result = await dbcon.query(sql);
+        return result.rows;
+    }
+
+    static async mensagens(idGrupo, emailUsuarioSecao, offset, limit) {
+        const sql = `SELECT USUARIO.NOME AS NOMEUSUARIO, DATAENVIO, TEXTO, CASE ESCRITOR WHEN $1 THEN 'RIGHT' ELSE 'LEFT' END AS POSICAO FROM MENSAGE LEFT JOIN USUARIO ON ESCRITOR = USUARIO.EMAIL WHERE IDGRUPO = $2 LIMIT $3 OFFSET $4`;
+        const result = await dbcon.query(sql, [emailUsuarioSecao, idGrupo, limit, offset]);
         return result.rows;
     }
 

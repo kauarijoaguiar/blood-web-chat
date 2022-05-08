@@ -20,10 +20,19 @@ class GruposController {
         const { idGrupo } = req.params;
         const grupo = await GrupoDAO.idsearch(idGrupo);
         const membrosGrupo = await UsuarioGrupoDAO.seartchmg(idGrupo);
-        const mensagens = await MensagemDAO.mensagens(idGrupo, req.session.usuario.email);
         const permissaoUsuarioGrupo = await UsuarioGrupoDAO.userpg(idGrupo, req.session.usuario.email);
         const usuario = req.session.usuario;
-        return res.render('grupos/detalhe', { grupo, membrosGrupo, mensagens, permissaoUsuarioGrupo, usuario });
+        let { page } = req.query;
+        console.log({ page });
+        if (!page) {
+            page = 1;
+        }
+        const limit = 5;
+        const offset = limit * (page - 1);
+        const mensagens = await MensagemDAO.mensagens(idGrupo, req.session.usuario.email, offset, limit);
+        const total = await MensagemDAO.contarMsg();
+        console.log(total);
+        return res.render('grupos/detalhe', { total, grupo, membrosGrupo, mensagens, permissaoUsuarioGrupo, usuario });
     }
 
     async pag(req, res) {
