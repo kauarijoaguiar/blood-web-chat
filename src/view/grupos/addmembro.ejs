@@ -1,28 +1,30 @@
 <%- include('../includes/head') %>
-<%- include('../includes/navbar') %>
+    <%- include('../includes/navbar') %>
 
-<body id="list-body">
-    <div class="container" style="text-align: center;">
-    <div>
-        <form action="adicionarMembro" method="POST">
-            <h3 style="color: #f00000;"> ADICIONAR MEMBRO A <%= grupo.nome %> </h3>
-    <div>
-        <input type="email" name="emailUsuario" placeholder="E-mail">
-    </div>
-    <div>
-        <select name="permissao" required>
+        <body id="list-body">
+            <div class="container" style="text-align: center;">
+                <div>
+                    <form action="addmembro" method="POST">
+                        <h3 style="color: #f00000;"> ADICIONAR MEMBRO A
+                            <%= grupo.nome %>
+                        </h3>
+                        <div>
+                            <input type="email" name="emailUsuario" placeholder="E-mail">
+                        </div>
+                        <div>
+                            <select name="permissao" required>
             <option value="" selected disabled hidden>Permissão</option>
             <option value="escritor">Escritor</option>
             <option value="leitor">Leitor</option>
         </select>
-    </div>
-    <div>
-        <button type="submit" class="btn btn-danger" style="background-color: #f00000; color: black;">ADICIONAR</button>
-    </div>
-    <div>
-        <a href="/" style="color: #f00000;">Cancelar</a>                                                                    
-    </div>
-        </form>
-    </div>
-    </div>
-</body>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-danger" style="background-color: #f00000; color: black;">ADICIONAR</button>
+                        </div>
+                        <div>
+                            <a href="/" style="color: #f00000;">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </body>
