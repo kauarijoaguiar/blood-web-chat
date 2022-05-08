@@ -10,6 +10,6 @@ const mensagemController = new MensagensController();
 //     console.log("oiiii")
 // });
 
-routes.post('/:idGrupo/enviaMensagem', mensagemController.enviaMensagem);
+routes.post('/:idGrupo/enviaMensagem', mensagemController.comentar);
 
 module.exports = routes;

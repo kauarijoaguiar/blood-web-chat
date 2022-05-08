@@ -6,11 +6,11 @@ const routes = Router();
 
 const usuariogrupoController = new UsuariosgruposController();
 
-routes.get('/listagemPorUsuario', usuariogrupoController.mostraListagemPorUsuario);
+routes.get('/userlist', usuariogrupoController.listuser);
 
-routes.get('/:idGrupo/adicionarMembro', usuariogrupoController.mostraAdicionarMembro);
+routes.get('/:idGrupo/addmembro', usuariogrupoController.listmembro);
 
-routes.post('/:idGrupo/adicionarMembro', usuariogrupoController.adicionaMembro);
+routes.post('/:idGrupo/addmembro', usuariogrupoController.addmembro);
 
 routes.get('/:idGrupo/eliminarmembro/:emailUsuario', usuariogrupoController.deletar);
 

@@ -3,20 +3,13 @@ const { MensagemDAO } = require('../models/mensagem');
 const { UsuarioGrupoDAO } = require('../models/usuariogrupo');
 
 class GruposController {
-    async mostraCadastro(req, res) {
-        return res.render('grupos/cadastro');
-    }
     async cadastro(req, res) {
         const grupoBody = req.body;
         const grupo = new Grupo(null, grupoBody.nome, req.session.usuario.email, new Date());
-        const id = await GrupoDAO.cadastrar(grupo);
-        res.redirect('/grupos/' + id + '/adicionarMembro');
+        const id = await GrupoDAO.cadastro(grupo);
+        res.redirect('/grupos/' + id + '/addmembro');
     }
-    async mostraListagemGeral(req, res) {
-        const grupos = await GrupoDAO.membrogrupo();
-        return res.render('grupos/listagemGeral', { grupos })
-    }
-    async mostraDetalhe(req, res) {
+    async desc(req, res) {
         const { idGrupo } = req.params;
         const grupo = await GrupoDAO.idsearch(idGrupo);
         const membrosGrupo = await UsuarioGrupoDAO.seartchmg(idGrupo);
@@ -32,7 +25,7 @@ class GruposController {
         const mensagens = await MensagemDAO.mensagens(idGrupo, req.session.usuario.email, offset, limit);
         const total = await MensagemDAO.contarMsg(idGrupo);
         console.log(total);
-        return res.render('grupos/detalhe', { total, grupo, membrosGrupo, mensagens, permissaoUsuarioGrupo, usuario });
+        return res.render('grupos/desc', { total, grupo, membrosGrupo, mensagens, permissaoUsuarioGrupo, usuario });
     }
 
     async pag(req, res) {
@@ -45,9 +38,15 @@ class GruposController {
         const offset = limit * (page - 1);
         const grupos = await GrupoDAO.listar(offset, limit);
         const total = await GrupoDAO.contar();
-        //console.log(total);
-        res.render('grupos/listagemGeral', { grupos: grupos, total, page });
+        res.render('grupos/list', { grupos: grupos, total, page });
 
+    }
+    async mostraCadastro(req, res) {
+        return res.render('grupos/cadastro');
+    }
+    async list(req, res) {
+        const grupos = await GrupoDAO.membrogrupo();
+        return res.render('grupos/list', { grupos })
     }
 
 }

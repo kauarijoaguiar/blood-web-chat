@@ -16,13 +16,11 @@ class GrupoDAO {
         const result = await dbcon.query(sql, [limit, offset]);
         return result.rows;
     }
-
     static async contar() {
         const sql = 'SELECT COUNT(*) FROM GRUPO';
         const result = await dbcon.query(sql);
         return result.rows;
     }
-
     static async idsearch(id) {
         const sql = 'SELECT * FROM GRUPO WHERE ID = $1';
         const result = await dbcon.query(sql, [id]);
@@ -39,7 +37,7 @@ class GrupoDAO {
         return result.rows;
     }
 
-    static async cadastrar(grupo) {
+    static async cadastro(grupo) {
 
         const result = await dbcon.query("SELECT CASE WHEN (SELECT COUNT(*) FROM GRUPO) > 0 THEN nextval('grupo_id_seq'::regclass) ELSE 1 END AS nextval");
         const proximoId = result.rows[0].nextval;

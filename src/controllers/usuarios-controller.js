@@ -3,9 +3,7 @@ const { Usuario, UsuarioDAO } = require('../models/usuario');
 
 
 class UsuariosController {
-    async mostraCadastro(req, res) {
-        return res.render('cadastro', {});
-    }
+
     async cadastro(req, res) {
         const usuarioBody = req.body;
         const usuarioEcontrado = await UsuarioDAO.emailsearch(usuarioBody.email);
@@ -22,13 +20,9 @@ class UsuariosController {
             return res.redirect('/');
         }
     }
-    async mostraLogin(req, res) {
-        return res.render('login', {});
-    }
     async login(req, res) {
         const { email, senha } = req.body;
         const usuarioEcontrado = await UsuarioDAO.emailsearch(email);
-
         const msg = {};
         msg.titulo = "Tente novamente";
         msg.mensagem = "Algo errado no login.";
@@ -47,6 +41,12 @@ class UsuariosController {
     async logout(req, res) {
         req.session.usuario = null;
         return res.redirect("usuarios/login")
+    }
+    async mostraLogin(req, res) {
+        return res.render('login', {});
+    }
+    async mostraCadastro(req, res) {
+        return res.render('cadastro', {});
     }
 }
 
