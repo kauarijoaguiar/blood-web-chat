@@ -27,10 +27,10 @@ class GruposController {
         if (!page) {
             page = 1;
         }
-        const limit = 5;
+        const limit = 10;
         const offset = limit * (page - 1);
         const mensagens = await MensagemDAO.mensagens(idGrupo, req.session.usuario.email, offset, limit);
-        const total = await MensagemDAO.contarMsg();
+        const total = await MensagemDAO.contarMsg(idGrupo);
         console.log(total);
         return res.render('grupos/detalhe', { total, grupo, membrosGrupo, mensagens, permissaoUsuarioGrupo, usuario });
     }
@@ -45,7 +45,7 @@ class GruposController {
         const offset = limit * (page - 1);
         const grupos = await GrupoDAO.listar(offset, limit);
         const total = await GrupoDAO.contar();
-        console.log(total);
+        //console.log(total);
         res.render('grupos/listagemGeral', { grupos: grupos, total, page });
 
     }

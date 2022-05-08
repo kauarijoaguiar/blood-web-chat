@@ -18,9 +18,10 @@ class MensagemDAO {
         return result.rows;
     }
 
-    static async contarMsg() {
-        const sql = 'SELECT COUNT(*) FROM MENSAGE';
-        const result = await dbcon.query(sql);
+    static async contarMsg(idgrupo) {
+        const sql = 'SELECT COUNT(*) FROM mensage JOIN grupo ON mensage.idgrupo = grupo.id WHERE idgrupo = $1';
+        const result = await dbcon.query(sql, [idgrupo]);
+        console.log(result.rows);
         return result.rows;
     }
 

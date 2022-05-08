@@ -83,16 +83,17 @@
                         </form>
                     </div>
                     <% } %>
+                   <%= Math.ceil(total[0].count/5)%>
+                    <div class="links">
+                        <% for (let i = 1; i <= Math.ceil(total[0].count/10); i++) { %>
+                            <a class="pages" href="/grupos/<%=grupo.id%>/?page=<%= i %>">
+                                <%= i %>
+                            </a>
+                        <% } %>
+                    </div>
                 </div>
                 </div>
             </div>
             </div>
-        </div>
-        <div class="links">
-            <% for (let i = 1; i <= Math.ceil(total[0].count/5); i++) { %>
-                <a class="pages" href="/grupos/5/?page=<%= i %>">
-                    <%= i %>
-                </a>
-            <% } %>
         </div>
     </body>
